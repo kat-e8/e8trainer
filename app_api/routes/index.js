@@ -3,7 +3,7 @@ const router = express.Router();
 
 const ctrlStudents = require('../controllers/students');
 const ctrlComments = require('../controllers/comments');
-
+const ctrlCourses = require('../controllers/courses')
 // students
 router
     .route('/students')
@@ -29,5 +29,17 @@ router
     .get(ctrlComments.commentsReadOne)
     .put(ctrlComments.commentsUpdateOne)
     .delete(ctrlComments.commentsDeleteOne);
+
+
+router
+    .route('/courses')
+    .get(ctrlCourses.coursesReadAll)
+    .post(ctrlCourses.coursesCreateOne);
+
+router
+    .route('/courses/:courseid')
+    .get(ctrlCourses.coursesReadOne)
+    .put(ctrlCourses.coursesUpdateOne)
+    .delete(ctrlCourses.coursesDeleteOne);
 
 module.exports = router;
