@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Chart</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>Live Data</h1>
+    <div class="container">
+        <canvas id="myChart"></canvas>
+    </div>
+    <script>
+        import 'require';
+        export function displayChart(a, b) {
+            window.chart = require('chart.js')
+            let myChart = document.getElementById("myChart").getContext('2d');
+            let massPopChat = new Chart(myChart, {
+            type: 'bar', ///bar, pie, line, donut, radar, polar
+            data: {
+                labels: ['Eastern Cape' ,'Free State' ,'Gauteng', 'KwaZulu-Natal', 'Limpopo', 'Mpumalanga', 'North West','Northern Cape', 'Western Cape'],
+                datasets: [{
+                    label: 'Population',
+                    data: [
+                        7058620,
+                        3089602,
+                        16174643,
+                        12369826,
+                        6413041,
+                        5119993,
+                        4199747,
+                        1374879,
+                        7627018,
+                        63427369
+                    ]
+                }]
+            },
+            options: {}     
+        });
+        }
+        
+
+    </script>
+</body>
+</html>

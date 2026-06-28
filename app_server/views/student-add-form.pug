@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  .row.banner
+    .col-12
+      h1 Add Student To Class
+  .row
+    .col-12.col-md-8
+      form(action="/students/new", method="post", role="form")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="name") Name
+          .col-12.col-sm-10
+            input#name.form-control(name="name")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="role") Role
+          .col-12.col-sm-10
+            input#name.form-control(name="role")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="company") Company
+          .col-12.col-sm-10
+            input#name.form-control(name="company")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="qualification") Qualification
+          .col-12.col-sm-10
+            input#review.form-control(name="qualification")
+        button.btn.btn-primary.float-right Add Student
+    .col-12.col-md-4
