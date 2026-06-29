@@ -7,7 +7,7 @@ const dbURI = 'mongodb://102.209.119.232:27019/e8trainer'
 mongoose.connect(dbURI);
 
 mongoose.connection.on('connected', () => {
-    console.log(`Mongoose connected to ${dbURI}`);
+    //console.log(`Mongoose connected to ${dbURI}`);
 });
 
 mongoose.connection.on('error', err => {
