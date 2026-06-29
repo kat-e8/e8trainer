@@ -6,11 +6,15 @@ block content
       h1 Add Student To Course
   .row
     .col-12.col-md-8
-      form(action="/students/new", method="post", role="form")
+      form(action=`/courses/${course}/students/new`, method="post", role="form")
         .form-group.row
           label.col-10.col-sm-2.col-form-label(for="name") Name
           .col-12.col-sm-10
             input#name.form-control(name="name")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="description") Description
+          .col-12.col-sm-10
+            input#name.form-control(name="description")
         .form-group.row
           label.col-10.col-sm-2.col-form-label(for="role") Role
           .col-12.col-sm-10

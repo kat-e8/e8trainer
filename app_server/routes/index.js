@@ -5,6 +5,7 @@ const ctrlMain = require('../controllers/main');
 const ctrlStudents = require('../controllers/students');
 const ctrlOthers = require('../controllers/others');
 const ctrlComments = require('../controllers/comments');
+const ctrlCourses = require('../controllers/courses');
 
 /* GET home page. */
 router.get('/', ctrlMain.index);
@@ -31,6 +32,41 @@ router
     .route('/students/:studentid/comment/new')
     .get(ctrlStudents.openCommentForm)
     .post(ctrlStudents.createComment);
+
+
+
+/* Course Pages */
+router.get('/courses/:courseid', ctrlCourses.readCourse);
+router.get('/add-course', ctrlCourses.openCourseForm);
+
+router
+    .route('/courses')
+    .get(ctrlCourses.readCourses)
+    .post(ctrlCourses.openCourseForm);
+
+router
+    .route('/courses/new')
+    .post(ctrlCourses.createCourse)
+
+router
+    .route('/courses/:courseid/delete')
+    .get(ctrlCourses.deleteCourse);
+
+
+router
+    .route('/courses/:courseid/students/new')
+    .get(ctrlCourses.openCourseStudentForm)
+    .post(ctrlCourses.createCourseStudent);
+
+router
+    .route('/courses/:courseid/students/:studentid')
+    .get(ctrlCourses.readCourseStudent);
+
+router
+    .route('/courses/:courseid/students/:studentid/comment/new')
+    .get(ctrlCourses.openStudentCommentForm)
+    .post(ctrlCourses.createStudentComment);
+
 
 /* About Page*/
 router.get('/about', ctrlOthers.about)

@@ -18,6 +18,7 @@ const studentSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    description: String,
     role: String,
     company: String,
     qualification: String,
@@ -26,6 +27,7 @@ const studentSchema = mongoose.Schema({
         'default': 0
     }, 
     comments: [commentSchema],
+    course: String
 });
 
 

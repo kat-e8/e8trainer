@@ -26,6 +26,7 @@ const studentSchema = mongoose.Schema({
         'default': 0
     }, 
     comments: [commentSchema],
+    course: String
 });
 
 
@@ -34,6 +35,7 @@ const courseSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    desciption: String,
     startDate: Date,
     endDate: Date,
     rating: {

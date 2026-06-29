@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .row.banner
+    .col-12
+      h1 Add Course to Register
+  .row
+    .col-12.col-md-8
+      form(action="/courses/new", method="post", role="form")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="name") Name
+          .col-12.col-sm-10
+            input#name.form-control(name="name")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="startDate") StartDate
+          .col-12.col-sm-10
+            input(type='date')#name.form-control(name="startDate")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="endDate") EndDate
+          .col-12.col-sm-10
+            input(type='date')#name.form-control(name="endDate")
+        button.btn.btn-primary.float-right Add Course
+    .col-12.col-md-4

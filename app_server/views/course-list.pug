@@ -1,0 +1,30 @@
+extends layout
+include _includes/sharedHTMLfunctions
+
+block content
+    .row.banner
+        .col-12
+            h1= pageHeader.title
+                small &nbsp;#{pageHeader.strapline}
+    .row.margin-top
+        .col-12.col-md-8
+            a.btn.btn-primary.float-right.button(href=`/add-course`) Add Course
+    .row
+        .col-12.col-md-8
+            .error= message
+            each course in courses.reverse()
+                .card
+                    .card-block
+                        h4
+                            a(href=`/courses/${course._id}`)= course.name
+                            small &nbsp;
+                                +outputRating(course.rating)
+                            small &nbsp;
+                            a.btn.btn-primary.float-right.button(href=`/courses/${course._id}/delete`) Remove
+                        p.address= course.startDate
+                        p.address= course.endDate
+                        
+        .col-12.col-md-4
+            p.lead= sidebar.context
+block scripts
+        

@@ -1,0 +1,47 @@
+extends layout
+
+include _includes/sharedHTMLfunctions
+
+block content
+  .row.banner
+    .col-12
+      h1 #{pageHeader.title} | #{pageHeader.strapline} 
+  .row
+    .col-12.col-lg-9
+      .row
+        .col-12.col-md-6
+          p  #{course.name} - #{course.description}
+          small &nbsp;
+              +outputRating(course.rating)
+        .col-12.col-md-6.location-map
+          .card.card-primary
+            .card-block
+              h2.card-title Course Attended
+              img.img-fluid.rounded(src=`/images/course.jpg`)
+      .row
+        .col-12
+          //- p !{(comment.comment).replace(/\n/g, '<br/>')}
+          .card.card-primary.review-card
+            .card-block
+              a.btn.btn-primary.float-right(href=`/courses/${course._id}/students/new`) Add Student
+              h2.card-title Course Students
+              each student in course.students
+                .row.review
+                  .col-12.no-gutters.review-header
+                    span.reviewAuthor.push #{student.name} #{student.description}
+                  .col-12
+                    .card-block
+                        h4
+                            a(href=`/courses/${course._id}/students/${student._id}`)= student.name
+                            small &nbsp;
+                                +outputRating(student.rating)
+                            small &nbsp;
+                            a.btn.btn-primary.float-right.button(href=`/students/${student._id}/delete`) Remove
+                        p.address= student.role
+                        p.address= student.qualification
+
+                    //- p !{(comment.comment).replace(/\n/g, '<br/>')}
+                    p #{student.rating}
+    .col-12.col-lg-3
+      p.lead #{sidebar.context}
+      p= sidebar.callToAction
