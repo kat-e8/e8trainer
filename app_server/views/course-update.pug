@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  .row.banner
+    .col-12
+      h1 Update Course Information
+  .row
+    .col-12.col-md-8
+      form(action=`/courses/${courseid}/update`, method="post", role="form")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="name") Name
+          .col-12.col-sm-10
+            input#name.form-control(name="name")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="rating") rating
+          .col-12.col-sm-10
+            input#name.form-control(name="rating")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="startDate") StartDate
+          .col-12.col-sm-10
+            input(type='date')#name.form-control(name="startDate")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="endDate") EndDate
+          .col-12.col-sm-10
+            input(type='date')#name.form-control(name="endDate")
+        button.btn.btn-primary.float-right Update Course
+    .col-12.col-md-4
