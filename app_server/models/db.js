@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 //require('./tags');
 
 //const dbURI = 'mongodb://localhost/e8pi';
-const dbURI = 'mongodb://102.209.119.232:27019/e8Trainer'
+const dbURI = 'mongodb://102.209.119.232:27019/e8trainer'
 mongoose.connect(dbURI);
 
 mongoose.connection.on('connected', () => {
