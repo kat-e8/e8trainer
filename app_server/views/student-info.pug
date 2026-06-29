@@ -10,9 +10,10 @@ block content
     .col-12.col-lg-9
       .row
         .col-12.col-md-6
-          p  #{student.role} - #{student.company}
+          p  #{student.role} for #{student.company}
           small &nbsp;
               +outputRating(student.rating)
+          a.btn.btn-primary.float-right(href=`courses/${course}/students/${student._id}/comment/new`) Update Student
         .col-12.col-md-6.location-map
           .card.card-primary
             .card-block

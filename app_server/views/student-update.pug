@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  .row.banner
+    .col-12
+      h1 Update Student
+  .row
+    .col-12.col-md-8
+      form(action=`/courses/${courseid}/students/${studentid}/update`, method="post", role="form")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="name") Name
+          .col-12.col-sm-10
+            input#name.form-control(name="name")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="description") Description
+          .col-12.col-sm-10
+            input#name.form-control(name="description")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="role") Role
+          .col-12.col-sm-10
+            input#name.form-control(name="role")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="company") Company
+          .col-12.col-sm-10
+            input#name.form-control(name="company")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="qualification") Qualification
+          .col-12.col-sm-10
+            input#review.form-control(name="qualification")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="rating") Rating
+          .col-12.col-sm-10
+            input#review.form-control(name="rating")
+        button.btn.btn-primary.float-right Update Student
+    .col-12.col-md-4

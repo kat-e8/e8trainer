@@ -41,21 +41,33 @@ const courseStudentsUpdateOne = (req, res) => {
     } else {
         Course
         .findById(req.params.courseid)
-        .select('courseStudents')
+        .select('students')
         .then((course) => {
-            if (course.courseStudents && course.courseStudents.length > 0) {
-                courseStudent = course.courseStudents.id(req.params.courseStudentid)
+            if (course.students && course.students.length > 0) {
+                courseStudent = course.students.id(req.params.studentid);
                 if(!courseStudent){
                     return res
                         .status(404)
                         .json({"message": "courseStudent not found"});
                 }
                 else{
-                    if(req.body.author){
-                        courseStudent.author = req.body.author;
+                    if(req.body.name){
+                        courseStudent.name = req.body.name;
                     }
-                    if(req.body.comment){
-                        courseStudent.comment = req.body.comment;
+                    if(req.body.description){
+                        courseStudent.description = req.body.description;
+                    }
+                    if(req.body.role){
+                        courseStudent.role = req.body.role;
+                    }
+                    if(req.body.company){
+                        courseStudent.company = req.body.company;
+                    }
+                    if(req.body.qualification){
+                        courseStudent.qualification = req.body.qualification;
+                    }
+                    if(req.body.rating){
+                        courseStudent.rating = req.body.rating;
                     }
                     course
                         .save()
@@ -76,9 +88,7 @@ const courseStudentsUpdateOne = (req, res) => {
                 .status(404)
                 .json({"message": "course not found"});
         });
-
     }
-
 };
 
 const courseStudentsDeleteOne = (req, res) => {

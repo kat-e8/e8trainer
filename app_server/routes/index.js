@@ -53,6 +53,12 @@ router
     .get(ctrlCourses.openCourseUpdateForm)
     .post(ctrlCourses.updateCourse);
 
+
+router
+    .route('/courses/:courseid/students/:studentid/update')
+    .get(ctrlCourses.openStudentUpdateForm)
+    .post(ctrlCourses.updateStudent);
+
 router
     .route('/courses/:courseid/students/new')
     .get(ctrlCourses.openCourseStudentForm)

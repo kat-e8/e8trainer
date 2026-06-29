@@ -229,6 +229,7 @@ const createCourseStudent = (req, res) => {
 };
 
 const renderCourseStudentInfo = (req, res, courseStudent) => {
+    console.log('suck  ' + courseStudent._id);
     res.render('course-student-info', {
         title: courseStudent.name,
         pageHeader: {
@@ -298,7 +299,6 @@ const openCourseUpdateForm = (req, res) => {
 
     });
 };
-
 
 const updateCourse = (req, res) => {
     const path = `courses/${req.params.courseid}`;
@@ -380,8 +380,47 @@ const openStudentCommentForm = (req, res) => {
         }
       
     });
-
 };
+
+const openStudentUpdateForm = (req, res) => {
+    console.log(req.params.courseid)
+    res.render('student-update', {
+        title: 'Update Student Details', 
+        pageHeader: {
+            title: 'Update Student details',
+            strapline: ''
+        },
+        sideBar: 'Course Modifications',
+        courseid: req.params.courseid,
+        studentid: req.params.studentid
+
+    });
+};
+
+const updateStudent = (req, res) => {
+    const path = `courses/${req.params.courseid}/students/${req.params.studentid}`;
+    const formCourse = {
+            name: req.body.name,
+            startDate: req.body.startDate,
+            endDate: req.body.endDate,
+            rating: req.body.rating
+    };
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'PUT',   
+        json: formCourse
+    };
+    //console.log(requestOptions);
+    request(requestOptions, (err, {statusCode}, body) => {
+        if(statusCode === 200 ) {
+            console.log(body);
+            res.redirect(`/courses`);
+        } else {
+            showError(req, res, statusCode);
+        }
+    });    
+};
+
 
 
 
@@ -398,5 +437,7 @@ module.exports = {
     readCourseStudent,
     createStudentComment,
     openStudentCommentForm,
-    openCourseUpdateForm
+    openCourseUpdateForm,
+    openStudentUpdateForm,
+    updateStudent
 };
