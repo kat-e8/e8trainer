@@ -175,7 +175,6 @@ const doAddComment = (req, res, course, student) => {
                 .save()
                 .then((student) => {
                     const thisComment = student.comments.slice(-1).pop();
-                    course.students.push(student);
                     course
                         .save()
                         .then((course) => {
