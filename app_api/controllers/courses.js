@@ -64,6 +64,9 @@ const coursesUpdateOne = (req, res) => {
                 if(req.body.endDate){
                     course.endDate = req.body.endDate;                
                 }
+                if(req.body.rating){
+                    course.rating = req.body.rating;
+                }
                 course
                     .save()
                     .then((course) => {

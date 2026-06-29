@@ -49,9 +49,9 @@ router
     .post(ctrlCourses.createCourse)
 
 router
-    .route('/courses/:courseid/delete')
-    .get(ctrlCourses.deleteCourse);
-
+    .route('/courses/:courseid/update')
+    .get(ctrlCourses.openCourseUpdateForm)
+    .post(ctrlCourses.updateCourse);
 
 router
     .route('/courses/:courseid/students/new')

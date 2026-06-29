@@ -53,7 +53,7 @@ const createCourse = (req, res) => {
         const formCourse = {
             name: req.body.name,
             startDate: req.body.startDate,
-            endDate: req.body.startDate
+            endDate: req.body.endDate
         };
         const requestOptions = {
             url: `${apiOptions.server}${path}`,
@@ -285,18 +285,45 @@ const readCourseStudent = (req, res) => {
      });
 };
 
-
-const updateCourse = (req, res) => {
+const openCourseUpdateForm = (req, res) => {
+    console.log(req.params.courseid)
     res.render('course-update', {
-        title: 'Course Student', 
+        title: 'Update Course Details', 
         pageHeader: {
             title: 'Update Course details',
             strapline: ''
         },
-        sideBar: 'Make corrections to existing Student'
+        sideBar: 'Make modification to Course',
+        courseid: req.params.courseid,
 
     });
 };
+
+
+const updateCourse = (req, res) => {
+    const path = `courses/${req.params.courseid}`;
+    const formCourse = {
+            name: req.body.name,
+            startDate: req.body.startDate,
+            endDate: req.body.endDate,
+            rating: req.body.rating
+    };
+    console.log(formCourse);
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'PUT',   
+        json: formCourse
+    };
+    request(requestOptions, (err, {statusCode}, body) => {
+        if(statusCode === 200 ) {
+            res.redirect(`/courses`);
+        } else {
+            showError(req, res, statusCode);
+        }
+    });    
+};
+
+
 const deleteCourse = (req, res) => {
     const path = `courses/${req.params.courseid}`;
     const requestOptions = {
@@ -370,5 +397,6 @@ module.exports = {
     createCourseStudent,
     readCourseStudent,
     createStudentComment,
-    openStudentCommentForm
+    openStudentCommentForm,
+    openCourseUpdateForm
 };
