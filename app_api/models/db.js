@@ -8,7 +8,7 @@ const dbURI = "mongodb+srv://katlego:katlegogagoopane@cluster0.fwpzmvn.mongodb.n
 mongoose.connect(dbURI);
 
 mongoose.connection.on('connected', () => {
-    console.log(`Mongoose connected to ${dbURI}`);
+    console.log(`Mongooser connected to ${dbURI}`);
 });
 
 mongoose.connection.on('error', err => {
