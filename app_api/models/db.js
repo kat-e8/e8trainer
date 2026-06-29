@@ -4,7 +4,7 @@ require('../models/students');
 
 //const dbURI = 'mongodb://localhost/e8trainer';
 //const dbURI = 'mongodb://clubuntu.dala-cirius.ts.net:27019/e8trainer';
-const dbURI = "mongodb+srv://katlego:katlegogagoopane@cluster0.fwpzmvn.mongodb.net/";
+const dbURI = "mongodb+srv://e8trainer:K%40stx890910@cluster0.fwpzmvn.mongodb.net/";
 mongoose.connect(dbURI);
 
 mongoose.connection.on('connected', () => {
