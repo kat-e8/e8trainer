@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 require('../models/students');
 
 //const dbURI = 'mongodb://localhost/e8trainer';
-const dbURI = 'mongodb://102.209.119.232:27017/e8trainer';
+const dbURI = 'mongodb://102.209.119.232:27015/e8trainer';
 mongoose.connect(dbURI);
 
 mongoose.connection.on('connected', () => {
