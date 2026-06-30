@@ -17,7 +17,7 @@ block content
         .col-12.col-md-6.location-map
           .card.card-primary
             .card-block
-              h2.card-title Course Attendee
+              h2.card-title Attendee Details
               img.img-fluid.rounded(src=`/images/student.png`)
       .row
         .col-12
@@ -30,7 +30,8 @@ block content
               each comment in courseStudent.comments
                 .row.review
                   .col-12.no-gutters.review-header
-                    span.reviewAuthor.push #{comment.createdOn}
+                    span.reviewAuthor.push 
+                      +formatDateTime(comment.createdOn)
                   .col-12
                     //- p !{(comment.comment).replace(/\n/g, '<br/>')}
                     p #{comment.comment}

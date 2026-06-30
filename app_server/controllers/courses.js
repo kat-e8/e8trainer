@@ -87,10 +87,10 @@ const renderCourseList = (req, res, courses) => {
         title: 'List of Courses',
         pageHeader: {
             title: 'e8Trainer',
-            strapline: 'Create and update Student records.'
+            strapline: 'Setup and manage Course records.'
         },
         sidebar: {
-            context: 'side context'
+            context: 'This web app assists in collecting, storing and retrieving course and student information. \nSimply create a course, add students to it and post comment about them.'
         },
         courses: courses,
         message
@@ -153,7 +153,7 @@ const readCourse = (req, res) => {
 };
 
 const renderCourseStudentForm = (req, res, course) => {
-    console.log('am i here?')
+    //console.log('am i here?')
     res.render('course-student-add-form', {
         title: `student for ${course.name}`,
         pageHeader: {
@@ -172,7 +172,7 @@ const renderCourseStudentForm = (req, res, course) => {
 
 const openCourseStudentForm = (req, res) => {
     const path = `courses/${req.params.courseid}`;
-    console.log(path)
+    //console.log(path)
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
         method: 'GET',
@@ -180,7 +180,7 @@ const openCourseStudentForm = (req, res) => {
     };
     request(requestOptions, (err, {statusCode}, course) => {
         if(statusCode === 200) {
-            console.log(course._id)
+            //console.log(course._id)
             renderCourseStudentForm(req, res, course._id);
         } else {
             showError(req, res, statusCode)
@@ -192,7 +192,7 @@ const openCourseStudentForm = (req, res) => {
 const createCourseStudent = (req, res) => {
 
     //
-    console.log('creating student.....');
+    //console.log('creating student.....');
    //const path = 'students';
    const path = `courses/${req.params.courseid}/students`
     if(!req.body.name ||!req.body.role ||!req.body.company ||!req.body.qualification) {
@@ -210,11 +210,11 @@ const createCourseStudent = (req, res) => {
                method: 'POST',
                json: formStudent
            };
-           console.log(requestOptions);
+           //console.log(requestOptions);
            request(requestOptions, (err, {statusCode}, courseStudent) => {
-                console.log('just returned...');
+                //console.log('just returned...');
                if(statusCode === 201) {
-                   console.log(courseStudent);
+                   //console.log(courseStudent);
                    //
                    
                    //
@@ -229,7 +229,6 @@ const createCourseStudent = (req, res) => {
 };
 
 const renderCourseStudentInfo = (req, res, courseStudent) => {
-    console.log('suck  ' + courseStudent._id);
     res.render('course-student-info', {
         title: courseStudent.name,
         pageHeader: {
@@ -247,9 +246,6 @@ const renderCourseStudentInfo = (req, res, courseStudent) => {
 };
 
 const renderStudentCommentForm = (req, res, student) => {
-    console.log('values...');
-    console.log(student._id)
-    console.log(req.params.courseid)
     res.render('student-comment-form', {
         title: `comment for ${student.name}`,
         pageHeader: {
@@ -276,7 +272,7 @@ const readCourseStudent = (req, res) => {
      };
      request(requestOptions,(err, {statusCode}, data) => {
         if(statusCode === 200) {
-            console.log(req.params.courseid);
+            //console.log(req.params.courseid);
             renderCourseStudentInfo(req, res, data.courseStudent);
            // renderStudentCommentForm(req, res, data.courseStudent);
            // res.redirect(``);
@@ -287,7 +283,7 @@ const readCourseStudent = (req, res) => {
 };
 
 const openCourseUpdateForm = (req, res) => {
-    console.log(req.params.courseid)
+    //console.log(req.params.courseid)
     res.render('course-update', {
         title: 'Update Course Details', 
         pageHeader: {
@@ -308,7 +304,7 @@ const updateCourse = (req, res) => {
             endDate: req.body.endDate,
             rating: req.body.rating
     };
-    console.log(formCourse);
+    //console.log(formCourse);
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
         method: 'PUT',   
@@ -316,7 +312,7 @@ const updateCourse = (req, res) => {
     };
     request(requestOptions, (err, {statusCode}, body) => {
         if(statusCode === 200 ) {
-            res.redirect(`/courses`);
+            res.redirect(`/courses/${req.params.courseid}`);
         } else {
             showError(req, res, statusCode);
         }
@@ -353,7 +349,7 @@ const createStudentComment = (req, res) => {
      };
      request(requestOptions,(err, {statusCode}, data) => {
         if(statusCode === 201) {
-            console.log(data);
+            //console.log(data);
             res.redirect(`/courses/${req.params.courseid}/students/${req.params.studentid}`);
         } else {
             showError(req, res, statusCode)   
@@ -363,7 +359,7 @@ const createStudentComment = (req, res) => {
 };
 
 const openStudentCommentForm = (req, res) => {
-    console.log('in here against')
+    //console.log('in here against')
     const path = `courses/${req.params.courseid}/students/${req.params.studentid}`;
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
@@ -372,7 +368,7 @@ const openStudentCommentForm = (req, res) => {
     };
     request(requestOptions, (err, {statusCode}, data) => {
         if(statusCode === 200) {
-            console.log(data);
+            //console.log(data);
             renderStudentCommentForm(req, res, data.courseStudent);
             //renderCourseStudentForm(req, res, data.courseStudent);
         } else {
@@ -383,7 +379,7 @@ const openStudentCommentForm = (req, res) => {
 };
 
 const openStudentUpdateForm = (req, res) => {
-    console.log(req.params.courseid)
+    //console.log(req.params.courseid)
     res.render('student-update', {
         title: 'Update Student Details', 
         pageHeader: {
@@ -414,7 +410,7 @@ const updateStudent = (req, res) => {
     request(requestOptions, (err, {statusCode}, body) => {
         if(statusCode === 200 ) {
             //console.log(body);
-            res.redirect(`/courses`);
+            res.redirect(`/courses/${req.params.courseid}/students/${req.params.studentid}`);
         } else {
             showError(req, res, statusCode);
         }

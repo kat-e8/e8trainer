@@ -21,8 +21,10 @@ block content
                                 +outputRating(course.rating)
                             small &nbsp;
                             a.btn.btn-primary.float-right.button(href=`/courses/${course._id}/delete`) Remove
-                        p.address= course.startDate
-                        p.address= course.endDate
+                        p.address Start: 
+                         +formatDate(course.startDate)
+                        p.address End: 
+                         +formatDate(course.endDate)
                         
         .col-12.col-md-4
             p.lead= sidebar.context
