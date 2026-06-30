@@ -27,7 +27,7 @@ block content
             .card-block
               a.btn.btn-primary.float-right(href=`/courses/${courseid}/students/${courseStudent._id}/comment/new`) Add Comment
               h2.card-title Student comments
-              each comment in courseStudent.comments
+              each comment in courseStudent.comments.reverse()
                 .row.review
                   .col-12.no-gutters.review-header
                     span.reviewAuthor.push 
