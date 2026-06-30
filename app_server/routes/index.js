@@ -53,6 +53,10 @@ router
     .get(ctrlCourses.openCourseUpdateForm)
     .post(ctrlCourses.updateCourse);
 
+router
+    .route('/courses/:courseid/delete')
+    .get(ctrlCourses.deleteCourse);
+
 
 router
     .route('/courses/:courseid/students/:studentid/update')
@@ -73,6 +77,10 @@ router
     .get(ctrlCourses.openStudentCommentForm)
     .post(ctrlCourses.createStudentComment);
 
+
+router
+    .route('/courses/:courseid/students/:studentid/delete')
+    .get(ctrlCourses.deleteStudent);
 
 /* About Page*/
 router.get('/about', ctrlOthers.about)

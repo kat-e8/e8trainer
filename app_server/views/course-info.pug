@@ -10,6 +10,7 @@ block content
     .col-12.col-lg-9
       .row
         .col-12.col-md-6
+          a.btn.btn-primary.float-right.button(href=`/courses/${course._id}/update`) Update Course
           p  #{course.name} - #{course.description}
           small &nbsp;
               +outputRating(course.rating)
@@ -36,7 +37,7 @@ block content
                             small &nbsp;
                                 +outputRating(student.rating)
                             small &nbsp;
-                            a.btn.btn-primary.float-right.button(href=`/students/${student._id}/delete`) Remove
+                            a.btn.btn-primary.float-right.button(href=`/courses/${course._id}/students/${student._id}/delete`) Remove
                         p.address= student.role
                         p.address= student.qualification
 

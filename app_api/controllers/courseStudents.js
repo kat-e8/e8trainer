@@ -99,9 +99,9 @@ const courseStudentsDeleteOne = (req, res) => {
     } else {
         Course
         .findById(req.params.courseid)
-        .select('courseStudents')
+        .select('students')
         .then((course) => {
-            if (course.courseStudents && course.courseStudents.length > 0) {
+            if (course.students && course.students.length > 0) {
                 courseStudent = course.students.id(req.params.studentid)
                 if(!courseStudent){
                     return res
@@ -109,7 +109,7 @@ const courseStudentsDeleteOne = (req, res) => {
                         .json({"message": "courseStudent not found"});
                 }
                 else{
-                    course.courseStudents.id(req.params.studentid).deleteOne();
+                    course.students.id(req.params.studentid).deleteOne();
                     course
                         .save()
                         .then((out) => {

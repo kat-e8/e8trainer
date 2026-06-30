@@ -413,12 +413,35 @@ const updateStudent = (req, res) => {
     //console.log(requestOptions);
     request(requestOptions, (err, {statusCode}, body) => {
         if(statusCode === 200 ) {
-            console.log(body);
+            //console.log(body);
             res.redirect(`/courses`);
         } else {
             showError(req, res, statusCode);
         }
     });    
+};
+
+const deleteStudent = (req, res) => {
+    courseid = req.params.courseid;
+    studentid = req.params.studentid;
+    if(courseid && studentid){
+       const path = `courses/${req.params.courseid}/students/${req.params.studentid}`;
+        const requestOptions = {
+            url: `${apiOptions.server}${path}`,
+            method: 'DELETE',   
+            json: {}
+        };
+        //console.log(requestOptions);
+        request(requestOptions, (err, {statusCode}, body) => {
+            if(statusCode === 204 ) {
+                //console.log(body);
+                res.redirect(`/courses/${courseid}`);
+            } else {
+                showError(req, res, statusCode);
+            }
+        }); 
+    }
+
 };
 
 
@@ -439,5 +462,6 @@ module.exports = {
     openStudentCommentForm,
     openCourseUpdateForm,
     openStudentUpdateForm,
-    updateStudent
+    updateStudent,
+    deleteStudent
 };
