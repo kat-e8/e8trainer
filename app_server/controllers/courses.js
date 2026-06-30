@@ -283,6 +283,7 @@ const readCourseStudent = (req, res) => {
 };
 
 const openCourseUpdateForm = (req, res) => {
+    const options = [1,2,3,4,5]; 
     //console.log(req.params.courseid)
     res.render('course-update', {
         title: 'Update Course Details', 
@@ -292,6 +293,7 @@ const openCourseUpdateForm = (req, res) => {
         },
         sideBar: 'Make modification to Course',
         courseid: req.params.courseid,
+        options
 
     });
 };
@@ -380,6 +382,7 @@ const openStudentCommentForm = (req, res) => {
 
 const openStudentUpdateForm = (req, res) => {
     //console.log(req.params.courseid)
+    options = [1,2,3,4,5]
     res.render('student-update', {
         title: 'Update Student Details', 
         pageHeader: {
@@ -388,8 +391,8 @@ const openStudentUpdateForm = (req, res) => {
         },
         sideBar: 'Course Modifications',
         courseid: req.params.courseid,
-        studentid: req.params.studentid
-
+        studentid: req.params.studentid,
+        options
     });
 };
 

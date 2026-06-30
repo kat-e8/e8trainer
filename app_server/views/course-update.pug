@@ -14,7 +14,10 @@ block content
         .form-group.row
           label.col-10.col-sm-2.col-form-label(for="rating") rating
           .col-12.col-sm-10
-            input#name.form-control(name="rating")
+            select#name.form-control(name="rating")
+              option(value='' selected disabled hidden) select rating between 1 and 5...
+              each option in options
+                option(value=rating)= option
         .form-group.row
           label.col-10.col-sm-2.col-form-label(for="startDate") StartDate
           .col-12.col-sm-10

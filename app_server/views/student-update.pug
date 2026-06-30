@@ -30,6 +30,9 @@ block content
         .form-group.row
           label.col-10.col-sm-2.col-form-label(for="rating") Rating
           .col-12.col-sm-10
-            input#review.form-control(name="rating")
+            select#name.form-control(name="rating")
+              option(value='' selected disabled hidden) select rating between 1 and 5...
+              each option in options
+                option(value=rating)= option
         button.btn.btn-primary.float-right Update Student
     .col-12.col-md-4
