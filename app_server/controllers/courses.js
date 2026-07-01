@@ -397,7 +397,6 @@ const openStudentUpdateForm = (req, res) => {
 };
 
 const updateStudent = (req, res) => {
-    console.log('hello');
     const path = `courses/${req.params.courseid}/students/${req.params.studentid}`;
     const formStudent = {
             name: req.body.name,
