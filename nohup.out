@@ -1,0 +1,26 @@
+Rejecting node tls
+Server is listening on port 3003
+Mongooser connected to mongodb://localhost/e8trainer
+[0mGET / [36m304 [0m306.266 ms - -[0m
+[0mGET /stylesheets/bootstrap.min.css [36m304 [0m4.784 ms - -[0m
+[0mGET /stylesheets/all.min.css [36m304 [0m1.290 ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m0.796 ms - -[0m
+[0mGET /javascripts/bootstrap.min.js [36m304 [0m1.770 ms - -[0m
+[0mGET /images/trainer.jpg [36m304 [0m1.656 ms - -[0m
+/home/katlego/Documents/2026/Trainer/app_server/controllers/courses.js:107
+    request(requestOptions, (err, {statusCode}, courses) => {
+                                   ^
+
+TypeError: Cannot destructure property 'statusCode' of 'undefined' as it is undefined.
+    at Request._callback (/home/katlego/Documents/2026/Trainer/app_server/controllers/courses.js:107:36)
+    at self.callback (/home/katlego/Documents/2026/Trainer/node_modules/request/request.js:185:22)
+    at Request.emit (node:events:517:28)
+    at Request.onRequestError (/home/katlego/Documents/2026/Trainer/node_modules/request/request.js:877:8)
+    at ClientRequest.emit (node:events:517:28)
+    at Socket.socketErrorListener (node:_http_client:501:9)
+    at Socket.emit (node:events:517:28)
+    at emitErrorNT (node:internal/streams/destroy:151:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:116:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+
+Node.js v18.19.1
