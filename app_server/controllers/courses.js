@@ -124,7 +124,7 @@ const renderCourse = (req, res, course) => {
             strapline: course.startDate
         },
         sidebar: {
-            context: `${course.name} is on e8Trainer because they attended Ignition training at Element8 hosted by Katlego Gagoopane.`,
+            context: `${course.name} is an Inductive Automation course offered by Element8`,
             callToAction: 'My intention is to inject students with an excitement for Ignition, but here\'s a question: \nHow can I pour from an empty cup? \nHow could I possibly hope to inspire if I myself am not inspired?'
         }, 
         course
