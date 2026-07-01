@@ -323,6 +323,7 @@ const updateCourse = (req, res) => {
 
 
 const deleteCourse = (req, res) => {
+    console.log('deleting');
     const path = `courses/${req.params.courseid}`;
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
@@ -445,6 +446,17 @@ const deleteStudent = (req, res) => {
 
 };
 
+const openCourseDeleteForm = (req, res) => {
+    res.render('delete-course-form', {
+        title: 'Delete Course', 
+        pageHeader: {
+            title: 'Delete',
+            strapline: ''
+        },
+        sideBar: 'Course Modifications',
+        courseid: req.params.courseid,
+    });
+};
 
 
 
@@ -464,5 +476,6 @@ module.exports = {
     openCourseUpdateForm,
     openStudentUpdateForm,
     updateStudent,
-    deleteStudent
+    deleteStudent,
+    openCourseDeleteForm
 };

@@ -55,7 +55,11 @@ router
 
 router
     .route('/courses/:courseid/delete')
-    .get(ctrlCourses.deleteCourse);
+    .get(ctrlCourses.openCourseDeleteForm);
+
+router
+    .route('/courses/:courseid/delete/new')
+    .post(ctrlCourses.deleteCourse);
 
 
 router
