@@ -195,7 +195,7 @@ const createCourseStudent = (req, res) => {
     //console.log('creating student.....');
    //const path = 'students';
    const path = `courses/${req.params.courseid}/students`
-    if(!req.body.name ||!req.body.role ||!req.body.company ||!req.body.qualification) {
+    if(!req.body.name ||!req.body.company) {
            res.redirect('/students/new?err=val');
        } else {
             const formStudent = {
