@@ -3,6 +3,9 @@ extends layout
 include _includes/sharedHTMLfunctions
 
 block content
+  .row
+    .col-12.col-md-6
+        a.btn.btn-primary.float-right(href=`/courses/${courseid}`) Back To Course
   .row.banner
     .col-12
       h1 #{pageHeader.title} | #{pageHeader.strapline} 
