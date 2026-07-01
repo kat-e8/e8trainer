@@ -397,17 +397,20 @@ const openStudentUpdateForm = (req, res) => {
 };
 
 const updateStudent = (req, res) => {
+    console.log('hello');
     const path = `courses/${req.params.courseid}/students/${req.params.studentid}`;
-    const formCourse = {
+    const formStudent = {
             name: req.body.name,
-            startDate: req.body.startDate,
-            endDate: req.body.endDate,
-            rating: req.body.rating
+            company: req.body.company,
+            qualification: req.body.qualification,
+            rating: req.body.rating,
+            description: req.body.description,
+            role: req.body.role
     };
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
         method: 'PUT',   
-        json: formCourse
+        json: formStudent
     };
     //console.log(requestOptions);
     request(requestOptions, (err, {statusCode}, body) => {
