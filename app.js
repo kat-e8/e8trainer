@@ -46,11 +46,11 @@ if ('development' == app.get('env')) {
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 }
 
-const port = process.env.PORT || 3003;
+// const port = process.env.PORT || 3003;
 
-app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Server is listening on port ${port}`);
+// });
 
 // error handler
 app.use(function(err, req, res, next) {
