@@ -458,6 +458,18 @@ const openCourseDeleteForm = (req, res) => {
     });
 };
 
+const openStudentDeleteForm = (req, res) => {
+    res.render('delete-student-form', {
+        title: 'Delete Student', 
+        pageHeader: {
+            title: 'Delete Student',
+            strapline: ''
+        },
+        sideBar: 'Student Modifications',
+        courseid: req.params.courseid,
+        studentid: req.params.studentid
+    });
+};
 
 
 
@@ -477,5 +489,6 @@ module.exports = {
     openStudentUpdateForm,
     updateStudent,
     deleteStudent,
-    openCourseDeleteForm
+    openCourseDeleteForm,
+    openStudentDeleteForm
 };

@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  .row.banner
+    .col-12
+      h1 Delete Student
+  .row
+    .col-12.col-md-8
+      form(action=`/courses/${courseid}/students/${studentid}/delete`, method="post", role="form")
+        button.btn.btn-primary.float-right Really Delete Student?
+    .col-12.col-md-4

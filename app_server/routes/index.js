@@ -55,10 +55,7 @@ router
 
 router
     .route('/courses/:courseid/delete')
-    .get(ctrlCourses.openCourseDeleteForm);
-
-router
-    .route('/courses/:courseid/delete/new')
+    .get(ctrlCourses.openCourseDeleteForm)
     .post(ctrlCourses.deleteCourse);
 
 
@@ -84,7 +81,8 @@ router
 
 router
     .route('/courses/:courseid/students/:studentid/delete')
-    .get(ctrlCourses.deleteStudent);
+    .get(ctrlCourses.openStudentDeleteForm)
+    .post(ctrlCourses.deleteStudent);
 
 /* About Page*/
 router.get('/about', ctrlOthers.about)
