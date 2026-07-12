@@ -1,14 +1,11 @@
 const mongoose = require('mongoose');
-
-require('../models/students');
-
 //const dbURI = 'mongodb://localhost/e8trainer'; hello there again
-const dbURI = 'mongodb://102.209.119.232:27019/e8trainer';
+const dbURI = 'mongodb://localhost/e8trainer';
 //const dbURI = "mongodb+srv://katlego:katlegogagoopane@cluster0.fwpzmvn.mongodb.net/";
 mongoose.connect(dbURI);
 
 mongoose.connection.on('connected', () => {
-    console.log(`Mongooser connected to ${dbURI}`);
+    console.log(`Mongoose connected to ${dbURI}`);
 });
 
 mongoose.connection.on('error', err => {

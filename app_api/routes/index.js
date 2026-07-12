@@ -1,37 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-const ctrlStudents = require('../controllers/students');
-const ctrlComments = require('../controllers/comments');
 const ctrlCourses = require('../controllers/courses');
 const ctrlCourseStudents = require('../controllers/courseStudents');
 const ctrlStudentComments = require('../controllers/studentComments');
-// students
-router
-    .route('/students')
-    .get(ctrlStudents.studentsListByDataset)
-    .post(ctrlStudents.studentsCreate);
-router
-    .route('/students/:studentid')
-    .get(ctrlStudents.studentsReadOne)
-    .put(ctrlStudents.studentsUpdateOne)
-    .delete(ctrlStudents.studentsDeleteOne);
-
-router
-    .route('/students/find/:name')
-    .get(ctrlStudents.findStudentByName);
-
-//comments
-router
-    .route('/students/:studentid/comments/')
-    .post(ctrlComments.commentsCreate);
-
-router
-    .route('/students/:studentid/comments/:commentid')
-    .get(ctrlComments.commentsReadOne)
-    .put(ctrlComments.commentsUpdateOne)
-    .delete(ctrlComments.commentsDeleteOne);
-
+const ctrlCompanies = require('../controllers/companies');
+const ctrlCompanyComments = require('../controllers/companyComments');
 
 router
     .route('/courses')
@@ -57,5 +31,30 @@ router
 router
     .route('/courses/:courseid/students/:studentid/comments')
     .post(ctrlStudentComments.commentsCreateOne);
+
+
+///Company
+router
+    .route('/companies')
+    .get(ctrlCompanies.companiesReadAll)
+    .post(ctrlCompanies.companiesCreateOne);
+
+router
+    .route('/companies/:companyid')
+    .get(ctrlCompanies.companiesReadOne)
+    .put(ctrlCompanies.companiesUpdateOne)
+    .delete(ctrlCompanies.companiesDeleteOne);
+
+
+router
+    .route('/companies/:companyid/comments')
+    .post(ctrlCompanyComments.companyCommentsCreateOne);
+
+router
+    .route('/companies/:companyid/comments/:commentid')
+    .get(ctrlCompanyComments.companyCommentsReadOne)
+    .put(ctrlCompanyComments.companyCommentsUpdateOne)
+    .delete(ctrlCompanyComments.companyCommentsDeleteOne);
+
 
 module.exports = router;
