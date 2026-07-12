@@ -12,8 +12,7 @@ block content
         .col-12.col-md-6
           a.btn.btn-primary.float-right.button(href=`/companies/${company._id}/update`) Update Company
           p  #{company.name} - #{company.description}
-          small &nbsp;
-            #{company.address}
+          small &nbsp; #{company.address}
         .col-12.col-md-6.location-map
           .card.card-primary
             .card-block
