@@ -22,7 +22,10 @@ block content
         .form-group.row
           label.col-10.col-sm-2.col-form-label(for="company") Company
           .col-12.col-sm-10
-            input#name.form-control(name="company")
+            select#name.form-control(name="company")
+              option(value='' selected disabled hidden) select company...
+              each company in companies
+                option(value=company)= company.name
         .form-group.row
           label.col-10.col-sm-2.col-form-label(for="qualification") Qualification
           .col-12.col-sm-10

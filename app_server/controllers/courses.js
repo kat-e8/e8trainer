@@ -152,8 +152,13 @@ const readCourse = (req, res) => {
    
 };
 
-const renderCourseStudentForm = (req, res, course) => {
-    //console.log('am i here?')
+const renderCourseStudentForm = (req, res, course, companies) => {
+    //console.log(companies);
+    companyNames = []
+    for(let i=0; i < companies.length; i++){
+        companyNames.push(companies[i].name);
+    }
+    console.log(companyNames);
     res.render('course-student-add-form', {
         title: `student for ${course.name}`,
         pageHeader: {
@@ -165,34 +170,52 @@ const renderCourseStudentForm = (req, res, course) => {
             callToAction: 'SM is the generic database model. There are three end point levels - collection, document and subdocument. For each level we define appropriate crud operations'
         },
         course,
+        companies: companyNames,
         error: req.query.err
     });
 };
 
 
 const openCourseStudentForm = (req, res) => {
-    const path = `courses/${req.params.courseid}`;
-    //console.log(path)
+    //get all companies
+    const path = 'companies';
     const requestOptions = {
         url: `${apiOptions.server}${path}`,
         method: 'GET',
         json: {},
     };
-    request(requestOptions, (err, {statusCode}, course) => {
+    request(requestOptions, (err, {statusCode}, companies) => {
+        let data = [];
         if(statusCode === 200) {
-            //console.log(course._id)
-            renderCourseStudentForm(req, res, course._id);
-        } else {
-            showError(req, res, statusCode)
-        }
-      
-    });  
+            data = companies;
+            //renderCourseList(req, res, courses);
+            const path = `courses/${req.params.courseid}`;
+            console.log(companies);
+        //console.log(path)
+        const requestOptions = {
+            url: `${apiOptions.server}${path}`,
+            method: 'GET',
+            json: {},
+        };
+        request(requestOptions, (err, {statusCode}, course) => {
+            if(statusCode === 200) {
+                //console.log(course._id)
+                renderCourseStudentForm(req, res, course._id, companies);
+            } else {
+                showError(req, res, statusCode)
+            }
+        
+        });
+            } else {
+                showError(req, res, statusCode);
+            }
+        });
+
+    //////  
 };
 
 const createCourseStudent = (req, res) => {
 
-    //
-    //console.log('creating student.....');
    //const path = 'students';
    const path = `courses/${req.params.courseid}/students`
     if(!req.body.name ||!req.body.company) {
@@ -382,19 +405,56 @@ const openStudentCommentForm = (req, res) => {
 };
 
 const openStudentUpdateForm = (req, res) => {
-    //console.log(req.params.courseid)
-    options = [1,2,3,4,5]
-    res.render('student-update', {
-        title: 'Update Student Details', 
-        pageHeader: {
-            title: 'Update Student details',
-            strapline: ''
-        },
-        sideBar: 'Course Modifications',
-        courseid: req.params.courseid,
-        studentid: req.params.studentid,
-        options
+    //get all companies
+    const path = 'companies';
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'GET',
+        json: {},
+    };
+    request(requestOptions, (err, {statusCode}, companies) => {
+        let data = [];
+        if(statusCode === 200) {
+            data = companies;
+            //renderCourseList(req, res, courses);
+            const path = `courses/${req.params.courseid}`;
+            //console.log(companies);
+        //console.log(path)
+        const requestOptions = {
+            url: `${apiOptions.server}${path}`,
+            method: 'GET',
+            json: {},
+        };
+        request(requestOptions, (err, {statusCode}, course) => {
+            if(statusCode === 200) {
+                //console.log(course._id)
+                //renderCourseStudentForm(req, res, course._id, companies);
+                /////
+                options = [1,2,3,4,5]
+                res.render('student-update', {
+                    title: 'Update Student Details', 
+                    pageHeader: {
+                        title: 'Update Student details',
+                        strapline: ''
+                    },
+                    sideBar: 'Course Modifications',
+                    courseid: req.params.courseid,
+                    studentid: req.params.studentid,
+                    companies,
+                    options
+                });
+                /////
+            } else {
+                showError(req, res, statusCode)
+            }
+        
+        });
+            } else {
+                showError(req, res, statusCode);
+            }
     });
+    ////
+    //console.log(req.params.courseid)
 };
 
 const updateStudent = (req, res) => {
