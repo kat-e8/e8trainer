@@ -1,0 +1,30 @@
+extends layout
+include _includes/sharedHTMLfunctions
+
+block content
+    .row.banner
+        .col-12
+            h1= pageHeader.title
+                small &nbsp;#{pageHeader.strapline}
+    .row.margin-top
+        .col-12.col-md-8
+            a.btn.btn-primary.float-right.button(href=`/add-company`) Add Company
+    .row
+        .col-12.col-md-8
+            .error= message
+            each company in companies.reverse()
+                .card
+                    .card-block
+                        h4
+                            a(href=`/companies/${company._id}`)= company.name
+                            small &nbsp;
+                                #{company.description}
+                            small &nbsp;
+                            a.btn.btn-primary.float-right.button(href=`/companies/${company._id}/delete`) Remove
+                        p= company.address
+                        p= company.industry
+                        
+        .col-12.col-md-4
+            p.lead= sidebar.context
+block scripts
+        

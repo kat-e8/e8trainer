@@ -1,0 +1,39 @@
+extends layout
+
+include _includes/sharedHTMLfunctions
+
+block content
+  .row.banner
+    .col-12
+      h1 #{pageHeader.title} | Company Details 
+  .row
+    .col-12.col-lg-9
+      .row
+        .col-12.col-md-6
+          a.btn.btn-primary.float-right.button(href=`/companies/${company._id}/update`) Update Company
+          p  #{company.name} - #{company.description}
+          small &nbsp;
+            #{company.address}
+        .col-12.col-md-6.location-map
+          .card.card-primary
+            .card-block
+              h2.card-title Company Attended
+              img.img-fluid.rounded(src=`/images/company.jpg`)
+      .row
+        .col-12
+          //- p !{(comment.comment).replace(/\n/g, '<br/>')}
+          .card.card-primary.review-card
+            .card-block
+              a.btn.btn-primary.float-right(href=`/companies/${company._id}/comments/new`) Add Comment
+              h2.card-title Company Comment
+              each comment in company.comments.reverse()
+                .row.review
+                  .col-12.no-gutters.review-header
+                    span.reviewAuthor.push 
+                      +formatDateTime(comment.createdOn)
+                  .col-12
+                    //- p !{(comment.comment).replace(/\n/g, '<br/>')}
+                    p #{comment.comment}
+    .col-12.col-lg-3
+      p.lead #{sidebar.context}
+      p= sidebar.callToAction

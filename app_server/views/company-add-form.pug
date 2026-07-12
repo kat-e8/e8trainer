@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  .row.banner
+    .col-12
+      h1 Add Company to Register
+  .row
+    .col-12.col-md-8
+      form(action="/companies/new", method="post", role="form")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="name") Name
+          .col-12.col-sm-10
+            input#name.form-control(name="name")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="address") Address
+          .col-12.col-sm-10
+            input#name.form-control(name="address")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="description") Description
+          .col-12.col-sm-10
+            input#name.form-control(name="description")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="industry") Industry
+          .col-12.col-sm-10
+            input#name.form-control(name="industry")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="contactPerson") ContactPerson
+          .col-12.col-sm-10
+            input#name.form-control(name="contactPerson")
+        button.btn.btn-primary.float-right Add Company
+    .col-12.col-md-4

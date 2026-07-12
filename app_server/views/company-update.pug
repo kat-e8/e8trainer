@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  .row.banner
+    .col-12
+      h1 Update Company Information
+  .row
+    .col-12.col-md-8
+      form(action=`/companies/${companyid}/update`, method="post", role="form")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="name") Name
+          .col-12.col-sm-10
+            input#name.form-control(name="name")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="description") Description
+          .col-12.col-sm-10
+            input#name.form-control(name="description")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="address") Address
+          .col-12.col-sm-10
+            input#name.form-control(name="address")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="industry") Industry
+          .col-12.col-sm-10
+            input#name.form-control(name="industry")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="contactPerson") Contact Person
+          .col-12.col-sm-10
+            input#name.form-control(name="contactPerson")
+        button.btn.btn-primary.float-right Update Company
+    .col-12.col-md-4

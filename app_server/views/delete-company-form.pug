@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  .row.banner
+    .col-12
+      h1 Delete Company
+  .row
+    .col-12.col-md-8
+      form(action=`/companies/${companyid}/delete`, method="post", role="form")
+        button.btn.btn-primary.float-right Really Delete?
+      a.btn.btn-primary.float-right.button(href=`/companies/${companyid}`) Back to Company
+    .col-12.col-md-4

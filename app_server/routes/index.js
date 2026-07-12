@@ -6,39 +6,37 @@ const ctrlStudents = require('../controllers/students');
 const ctrlOthers = require('../controllers/others');
 const ctrlComments = require('../controllers/comments');
 const ctrlCourses = require('../controllers/courses');
+const ctrlCompanies = require('../controllers/companies');
 
 /* GET home page. */
 router.get('/', ctrlMain.index);
 
-/* Student Pages */
-router.get('/students/:studentid', ctrlStudents.readStudent);
-router.get('/add-student', ctrlStudents.openStudentForm);
+// /* Student Pages */
+// router.get('/students/:studentid', ctrlStudents.readStudent);
+// router.get('/add-student', ctrlStudents.openStudentForm);
 
-router
-    .route('/students')
-    .get(ctrlStudents.readStudents)
-    .post(ctrlStudents.openStudentForm);
+// router
+//     .route('/students')
+//     .get(ctrlStudents.readStudents)
+//     .post(ctrlStudents.openStudentForm);
 
-router
-    .route('/students/new')
-    .post(ctrlStudents.createStudent)
+// router
+//     .route('/students/new')
+//     .post(ctrlStudents.createStudent)
 
-router
-    .route('/students/:studentid/delete')
-    .get(ctrlStudents.deleteStudent);
+// router
+//     .route('/students/:studentid/delete')
+//     .get(ctrlStudents.deleteStudent);
 
 
-router
-    .route('/students/:studentid/comment/new')
-    .get(ctrlStudents.openCommentForm)
-    .post(ctrlStudents.createComment);
+// router
+//     .route('/students/:studentid/comment/new')
+//     .get(ctrlStudents.openCommentForm)
+//     .post(ctrlStudents.createComment);
 
 
 
 /* Course Pages */
-router.get('/courses/:courseid', ctrlCourses.readCourse);
-router.get('/add-course', ctrlCourses.openCourseForm);
-
 router
     .route('/courses')
     .get(ctrlCourses.readCourses)
@@ -46,7 +44,11 @@ router
 
 router
     .route('/courses/new')
-    .post(ctrlCourses.createCourse)
+    .post(ctrlCourses.createCourse);
+
+router.get('/courses/:courseid', ctrlCourses.readCourse);
+router.get('/add-course', ctrlCourses.openCourseForm);
+
 
 router
     .route('/courses/:courseid/update')
@@ -88,3 +90,42 @@ router
 router.get('/about', ctrlOthers.about)
 
 module.exports = router;
+
+
+/* Companies Pages */
+router
+    .route('/companies')
+    .get(ctrlCompanies.readCompanies)
+    .post(ctrlCompanies.openCompanyForm);
+
+router
+    .route('/companies/new')
+    .post(ctrlCompanies.createCompany);
+
+router.get('/companies/:companyid', ctrlCompanies.readCompany);
+router.get('/add-company', ctrlCompanies.openCompanyForm);
+
+
+router
+    .route('/companies/:companyid/update')
+    .get(ctrlCompanies.openCompanyUpdateForm)
+    .post(ctrlCompanies.updateCompany);
+
+router
+    .route('/companies/:companyid/delete')
+    .get(ctrlCompanies.openCompanyDeleteForm)
+    .post(ctrlCompanies.deleteCompany);
+
+router
+    .route('/companies/:companyid/comments/:commentid/update')
+    .get(ctrlCompanies.openCommentUpdateForm)
+    .post(ctrlCompanies.updateComment);
+    
+router
+    .route('/companies/:companyid/comments/new')
+    .get(ctrlCompanies.openCompanyCommentForm)
+    .post(ctrlCompanies.createCompanyComment);
+    
+router
+    .route('/companies/:companyid/comments/:commentid')
+    .get(ctrlCompanies.readCompanyComment);
