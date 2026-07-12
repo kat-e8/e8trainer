@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 //const dbURI = 'mongodb://localhost/e8trainer'; hello there again
-const dbURI = 'mongodb://localhost/e8trainer';
+const dbURI = 'mongodb://102.209.119.232:27019/e8trainer';
 //const dbURI = "mongodb+srv://katlego:katlegogagoopane@cluster0.fwpzmvn.mongodb.net/";
 mongoose.connect(dbURI);
 
