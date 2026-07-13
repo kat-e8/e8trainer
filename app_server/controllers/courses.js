@@ -282,7 +282,7 @@ const createCourseStudent = (req, res) => {
                    //
                    
                    //
-                   res.redirect(`/courses/${req.params.courseid}`);
+                   res.redirect(`/courses/${req.params.courseid}/students`);
                } else if(statusCode === 400) {
                    res.redirect('/students/new?err=val');return;
                } else {
@@ -662,7 +662,7 @@ const createCourseComment = (req, res) => {
            request(requestOptions, (err, {statusCode}, courseComment) => {
                 //console.log('just returned...');
                if(statusCode === 201) {
-                   res.redirect(`/courses/${req.params.courseid}`);
+                   res.redirect(`/courses/${req.params.courseid}/comments`);
                } else if(statusCode === 400) {
                    res.redirect('/comments/new?err=val');return;
                } else {
