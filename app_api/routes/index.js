@@ -6,6 +6,7 @@ const ctrlCourseStudents = require('../controllers/courseStudents');
 const ctrlStudentComments = require('../controllers/studentComments');
 const ctrlCompanies = require('../controllers/companies');
 const ctrlCompanyComments = require('../controllers/companyComments');
+const ctrlCourseComments = require('../controllers/courseComments');
 
 router
     .route('/courses')
@@ -32,6 +33,9 @@ router
     .route('/courses/:courseid/students/:studentid/comments')
     .post(ctrlStudentComments.commentsCreateOne);
 
+router
+    .route('/courses/:courseid/comments')
+    .post(ctrlCourseComments.courseCommentsCreateOne);
 
 ///Company
 router

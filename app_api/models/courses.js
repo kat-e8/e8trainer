@@ -42,7 +42,8 @@ const courseSchema = mongoose.Schema({
         type: Number,
         'default': 0
     }, 
-    students: [studentSchema]
+    students: [studentSchema],
+    comments: [commentSchema]
 });
 
 mongoose.model('Course', courseSchema);

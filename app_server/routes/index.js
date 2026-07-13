@@ -60,6 +60,13 @@ router
     .get(ctrlCourses.openCourseDeleteForm)
     .post(ctrlCourses.deleteCourse);
 
+router
+    .route('/courses/:courseid/comments')
+    .get(ctrlCourses.commentsReadCourse);
+
+router
+    .route('/courses/:courseid/students')
+    .get(ctrlCourses.newReadCourse);
 
 router
     .route('/courses/:courseid/students/:studentid/update')
@@ -70,6 +77,11 @@ router
     .route('/courses/:courseid/students/new')
     .get(ctrlCourses.openCourseStudentForm)
     .post(ctrlCourses.createCourseStudent);
+
+router
+    .route('/courses/:courseid/comments/new')
+    .get(ctrlCourses.openCourseCommentForm)
+    .post(ctrlCourses.createCourseComment);
 
 router
     .route('/courses/:courseid/students/:studentid')

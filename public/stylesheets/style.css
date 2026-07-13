@@ -63,6 +63,13 @@ border-color: #911821;
 float: right
 }
 
+.badge-default, .btn-primary-left {
+background-color: #ad1d28;
+border-color: #911821;
+float: left;
+color: rgb(255,255,255);
+}
+
 .my-form {
   color: rgb(255, 255, 255);
   float: left;
@@ -120,5 +127,9 @@ h4 small {
 
   .left-edge {
     text-align: right;
+  }
+
+  .marg {
+    margin-right: 10px;
   }
 

@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  .row.banner
+    .col-12
+      h1 Add Comment
+  .row
+    .col-12.col-md-8
+      form(action=`/courses/${course._id}/comments/new`, method="post", role="form")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="comment") Comment
+          .col-12.col-sm-10
+            textarea#review.form-control(name="comment", rows="8")
+        button.btn.btn-primary.float-right Add Comment
+    .col-12.col-md-4

@@ -117,7 +117,7 @@ const readCourses = (req, res) => {
 
 //instance operations
 const renderCourse = (req, res, course) => {
-    res.render('course-info', {
+    res.render('new-course-info', {
         title: course.name,
         pageHeader: {
             title: course.name,
@@ -151,6 +151,47 @@ const readCourse = (req, res) => {
     })
    
 };
+
+/////
+const newRenderCourse = (req, res, course) => {
+    res.render('course-info', {
+        title: course.name,
+        pageHeader: {
+            title: course.name,
+            strapline: course.startDate
+        },
+        sidebar: {
+            context: `${course.name} is an Inductive Automation course offered by Element8`,
+            callToAction: 'My intention is to inject students with an excitement for Ignition, but here\'s a question: \nHow can I pour from an empty cup? \nHow could I possibly hope to inspire if I myself am not inspired?'
+        }, 
+        course
+        
+    });
+}
+
+
+const newReadCourse = (req, res) => {
+    const path = `courses/${req.params.courseid}`;
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'GET',
+        json: {},
+    };
+    request(requestOptions, (err, {statusCode}, course) => {
+        let data;
+        if(statusCode === 200) {
+            data = course;
+            newRenderCourse(req, res, data);
+        } else {
+            showError(req, res, statusCode)
+        }
+      
+    })
+};
+
+///
+
+
 
 const renderCourseStudentForm = (req, res, course, companies) => {
     //console.log(companies);
@@ -531,6 +572,108 @@ const openStudentDeleteForm = (req, res) => {
     });
 };
 
+const commentsRenderCourse = (req, res, course) => {
+    res.render('comments-course-info', {
+        title: course.name,
+        pageHeader: {
+            title: course.name,
+            strapline: course.startDate
+        },
+        sidebar: {
+            context: `${course.name} is an Inductive Automation course offered by Element8`,
+            callToAction: 'My intention is to inject students with an excitement for Ignition, but here\'s a question: \nHow can I pour from an empty cup? \nHow could I possibly hope to inspire if I myself am not inspired?'
+        }, 
+        course
+        
+    });
+}
+
+
+const commentsReadCourse = (req, res) => {
+    const path = `courses/${req.params.courseid}`;
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'GET',
+        json: {},
+    };
+    request(requestOptions, (err, {statusCode}, course) => {
+        let data;
+        if(statusCode === 200) {
+            data = course;
+            commentsRenderCourse(req, res, data);
+        } else {
+            showError(req, res, statusCode)
+        }
+      
+    })
+};
+
+const renderCourseCommentForm = (req, res, course) => {
+    //console.log(companies);
+    res.render('course-comment-add-form', {
+        title: `comment for ${course.name}`,
+        pageHeader: {
+            title: `Add comment to ${course.name}`,
+            strapline: ''
+        },
+        sidebar: {
+            content: '',
+            callToAction: 'SM is the generic database model. There are three end point levels - collection, document and subdocument. For each level we define appropriate crud operations'
+        },
+        course,
+        error: req.query.err
+    });
+};
+
+const openCourseCommentForm = (req, res) => {
+    const path = `courses/${req.params.courseid}`;
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+            method: 'GET',
+            json: {},
+    };
+    request(requestOptions, (err, {statusCode}, course) => {
+        if(statusCode === 200) {
+                        //console.log(course._id)
+            renderCourseCommentForm(req, res, course);
+        } else {
+            showError(req, res, statusCode)
+        }                
+    }); 
+};
+
+const createCourseComment = (req, res) => {
+
+    //
+    console.log('creating comment.....');
+   //const path = 'comments';
+   const path = `courses/${req.params.courseid}/comments`
+    if(!req.body.comment) {
+           res.redirect('/comments/new?err=val');
+       } else {
+            const formComment = {
+                comment: req.body.comment
+            };
+           const requestOptions = {
+               url: `${apiOptions.server}${path}`,
+               method: 'POST',
+               json: formComment
+           };
+           request(requestOptions, (err, {statusCode}, courseComment) => {
+                //console.log('just returned...');
+               if(statusCode === 201) {
+                   res.redirect(`/courses/${req.params.courseid}`);
+               } else if(statusCode === 400) {
+                   res.redirect('/comments/new?err=val');return;
+               } else {
+                   showError(req, res, statusCode);
+               }
+           });    
+       }
+};
+
+
+
 
 
 module.exports = {
@@ -550,5 +693,9 @@ module.exports = {
     updateStudent,
     deleteStudent,
     openCourseDeleteForm,
-    openStudentDeleteForm
+    openStudentDeleteForm,
+    newReadCourse,
+    commentsReadCourse,
+    openCourseCommentForm,
+    createCourseComment
 };
