@@ -24,6 +24,11 @@ router
     .post(ctrlCourseStudents.courseStudentsCreateOne);
 
 router
+    .route('/courses/:courseid/students/search')
+    .get(ctrlCourseStudents.searchForStudent);
+
+
+router
     .route('/courses/:courseid/students/:studentid')
     .get(ctrlCourseStudents.courseStudentsReadOne)
     .put(ctrlCourseStudents.courseStudentsUpdateOne)

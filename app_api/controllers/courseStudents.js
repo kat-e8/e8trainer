@@ -1,6 +1,34 @@
 const mongoose = require('mongoose');
 const Course = mongoose.model('Course');
 
+const courseStudentsReadAll = (req, res) => {
+   Course
+        .findById(req.params.courseid)
+        .then((course) => {
+            if (course.students && course.students.length > 0) {
+                students = course.students;
+                if(!students){
+                    return res
+                        .status(404)
+                        .json({"message": "students not found"});
+                }
+                else{
+                    response = {
+                        students
+                    }
+                    return res
+                            .status(200)
+                            .json(response);
+                }
+            }
+        }).catch((err) => {
+            return res
+                .status(404)
+                .json({"message": "course not found"});
+        });
+};
+
+
 const courseStudentsReadOne = (req, res) => {
    Course
         .findById(req.params.courseid)
@@ -134,7 +162,7 @@ const courseStudentsDeleteOne = (req, res) => {
 };
 
 const courseStudentsCreateOne = (req, res) => {
-    console.log('naam...' + req.body)
+    //console.log('naam...' + req.body)
     courseid = req.params.courseid;
     if(courseid){
         Course
@@ -185,9 +213,72 @@ const doAddCourseStudent = (req, res, course) => {
     }
 }
 
+const searchForStudent = (req, res) => {
+    Course
+        .findById(req.params.courseid)
+        .then((course) => {
+            if (course.students && course.students.length > 0) {
+                students = course.students;
+                if(!students){
+                    return res
+                        .status(404)
+                        .json({"message": "students not found"});
+                }
+                else{
+                    matchingStudents  = []
+                    for(i = 0; i < students.length; i++){
+                        searchPhrase = req.body.searchPhrase;
+                        console.log(students[i].name);
+                        if(students[i].name.includes(searchPhrase)){
+                            matchingStudents.push(students[i]);
+                        }
+                    }
+
+                    response = {
+                        matchingStudents
+                    }
+                    return res
+                            .status(200)
+                            .json(response);
+                }
+            }
+        }).catch((err) => {
+            return res
+                .status(404)
+                .json({"message": "course not found"});
+        });
+    //searchPhrase = req.body.searchPhrase;
+    //search for all students
+
+};
+
+const findCourseStudentByName = (req, res) => {
+    const courseName = req.params.name;
+    Course
+        .find({name: courseName})
+        .select('name _id')
+        .then((course) => {
+            if(course && course.length > 0){
+                return res
+                    .status(200)
+                    .json(course);
+            } else {
+                return res
+                        .status(404)
+                        .json({});
+            }
+        }).catch((err) => {
+            return res
+                    .status(404)
+                    .json({});
+        });
+};
+
+
 module.exports = {
     courseStudentsReadOne,
     courseStudentsUpdateOne,
     courseStudentsDeleteOne,
-    courseStudentsCreateOne
+    courseStudentsCreateOne,
+    searchForStudent
 };

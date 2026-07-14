@@ -148,8 +148,7 @@ const readCourse = (req, res) => {
             showError(req, res, statusCode)
         }
       
-    })
-   
+    });
 };
 
 /////
@@ -166,6 +165,23 @@ const newRenderCourse = (req, res, course) => {
         }, 
         course
         
+    });
+}
+
+const searchRenderCourse = (req, res, course, foundStudents) => {
+    console.log(foundStudents.matchingStudents);
+    res.render('search-course-info', {
+        title: course.name,
+        pageHeader: {
+            title: course.name,
+            strapline: course.startDate
+        },
+        sidebar: {
+            context: `${course.name} is an Inductive Automation course offered by Element8`,
+            callToAction: 'My intention is to inject students with an excitement for Ignition, but here\'s a question: \nHow can I pour from an empty cup? \nHow could I possibly hope to inspire if I myself am not inspired?'
+        }, 
+        course,
+        foundStudents
     });
 }
 
@@ -326,6 +342,8 @@ const renderStudentCommentForm = (req, res, student) => {
     });
 };
 
+
+
 const readCourseStudent = (req, res) => {
     //'/courses/:courseid/students/:studentid'
     const path = `courses/${req.params.courseid}/students/${req.params.studentid}`;
@@ -344,6 +362,38 @@ const readCourseStudent = (req, res) => {
             showError(req, res, statusCode)   
         }
      });
+};
+
+const readSearchedCourseStudents = (req, res) => {
+    const path = `courses/${req.params.courseid}`;
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'GET',
+        json: {},
+    };
+    request(requestOptions, (err, {statusCode}, course) => {
+        if(statusCode === 200) {
+            const path = `courses/${req.params.courseid}/students/search`;
+            const formSearch = {searchPhrase: req.body.searchPhrase};
+            const requestOptions = {
+                url: `${apiOptions.server}${path}`,
+                method: 'GET',   
+                json: formSearch
+            };
+            request(requestOptions,(err, {statusCode}, foundStudents) => {
+                if(statusCode === 200) {
+                    searchRenderCourse(req, res, course, foundStudents);
+                } else {
+                    showError(req, res, statusCode)   
+                }
+            });
+        } else {
+            showError(req, res, statusCode)
+        }
+      
+    });
+
+    
 };
 
 const openCourseUpdateForm = (req, res) => {
@@ -697,5 +747,6 @@ module.exports = {
     newReadCourse,
     commentsReadCourse,
     openCourseCommentForm,
-    createCourseComment
+    createCourseComment,
+    readSearchedCourseStudents
 };

@@ -32,7 +32,8 @@ block content
               each comment in course.comments
                 .row.review
                   .col-12.no-gutters.review-header
-                    span.reviewAuthor.push #{comment.createdOn}
+                    span.reviewAuthor.push 
+                      +formatDateTime(comment.createdOn)
                   .col-12
                     .card-block
                         p.address= comment.comment

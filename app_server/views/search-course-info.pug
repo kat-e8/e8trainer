@@ -37,7 +37,7 @@ block content
             .card-block
               a.btn.btn-primary.float-right(href=`/courses/${course._id}/students/new`) Add Student
               h2.card-title Course Students
-              each student in course.students
+              each student in foundStudents.matchingStudents
                 .row.review
                   .col-12.no-gutters.review-header
                     span.reviewAuthor.push #{student.company}

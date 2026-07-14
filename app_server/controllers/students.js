@@ -98,6 +98,7 @@ const renderStudentList = (req, res, students) => {
     });
 
 };
+
 const readStudents = (req, res) => {
     const path = 'students';
     const requestOptions = {

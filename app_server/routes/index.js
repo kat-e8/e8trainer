@@ -98,6 +98,10 @@ router
     .get(ctrlCourses.openStudentDeleteForm)
     .post(ctrlCourses.deleteStudent);
 
+router
+    .route('/courses/:courseid/students/search')
+    .post(ctrlCourses.readSearchedCourseStudents);
+
 /* About Page*/
 router.get('/about', ctrlOthers.about)
 
