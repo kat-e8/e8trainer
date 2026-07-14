@@ -185,6 +185,22 @@ const searchRenderCourse = (req, res, course, foundStudents) => {
     });
 }
 
+const searchRenderCourseNew = (req, res, foundCourses) => {
+    //console.log(foundStudents.matchingStudents);
+    res.render('search-course-list', {
+        pageHeader: {
+            title: 'Courses',
+            strapline: 'Inductive Automation'
+        },
+        sidebar: {
+            context: `Inductive Automation courses offered by Element8`,
+            callToAction: 'My intention is to inject students with an excitement for Ignition, but here\'s a question: \nHow can I pour from an empty cup? \nHow could I possibly hope to inspire if I myself am not inspired?'
+        }, 
+        foundCourses
+    });
+}
+
+
 
 const newReadCourse = (req, res) => {
     const path = `courses/${req.params.courseid}`;
@@ -395,6 +411,26 @@ const readSearchedCourseStudents = (req, res) => {
 
     
 };
+
+const readSearchedCourses = (req, res) => {
+    ///
+    const path = `courses/search/find`;
+    const formSearch = {searchPhrase: req.body.searchPhrase};
+    const requestOptions = {
+            url: `${apiOptions.server}${path}`,
+            method: 'GET',   
+            json: formSearch
+    };
+    request(requestOptions,(err, {statusCode}, foundCourses) => {
+            if(statusCode === 200) {
+                searchRenderCourseNew(req, res, foundCourses);
+            } else {
+                showError(req, res, statusCode)   
+            }
+    });
+    
+};
+
 
 const openCourseUpdateForm = (req, res) => {
     const options = [1,2,3,4,5]; 
@@ -748,5 +784,6 @@ module.exports = {
     commentsReadCourse,
     openCourseCommentForm,
     createCourseComment,
-    readSearchedCourseStudents
+    readSearchedCourseStudents,
+    readSearchedCourses
 };

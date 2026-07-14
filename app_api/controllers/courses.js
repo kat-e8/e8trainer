@@ -149,11 +149,47 @@ const findCourseByName = (req, res) => {
         });
 };
 
+const searchForCourses = (req, res) => {
+    Course
+        .find()
+        .then((courses) => {
+            if(!courses){
+                    return res
+                        .status(404)
+                        .json({"message": "students not found"});
+            } else{
+                matchingCourses  = []
+                for(i = 0; i < courses.length; i++){
+                    searchPhrase = req.body.searchPhrase;
+                    console.log(courses[i].name);
+                    if(courses[i].name.includes(searchPhrase)){
+                        matchingCourses.push(courses[i]);
+                    }
+                }
+                response = {
+                    matchingCourses
+                }
+                return res
+                        .status(200)
+                        .json(response);
+            }
+        }).catch((err) => {
+            return res
+                .status(404)
+                .json({"message": "course not found"});
+        });
+    //searchPhrase = req.body.searchPhrase;
+    //search for all students
+
+};
+
+
 module.exports = {
     coursesReadOne,
     coursesReadAll,
     coursesUpdateOne,
     coursesCreateOne,
     coursesDeleteOne,
-    findCourseByName
+    findCourseByName,
+    searchForCourses
 };

@@ -19,7 +19,7 @@ block content
                     button.btn-primary-left search
         .col-12.col-md-8
             .error= message
-            each course in foundCourses.reverse()
+            each course in foundCourses.matchingCourses
                 .card
                     .card-block
                         h4

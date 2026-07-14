@@ -102,6 +102,11 @@ router
     .route('/courses/:courseid/students/search')
     .post(ctrlCourses.readSearchedCourseStudents);
 
+router
+    .route('/courses/search')
+    .post(ctrlCourses.readSearchedCourses);
+
+
 /* About Page*/
 router.get('/about', ctrlOthers.about)
 

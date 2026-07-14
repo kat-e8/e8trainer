@@ -27,6 +27,10 @@ router
     .route('/courses/:courseid/students/search')
     .get(ctrlCourseStudents.searchForStudent);
 
+router
+    .route('/courses/search/find')
+    .get(ctrlCourses.searchForCourses);
+
 
 router
     .route('/courses/:courseid/students/:studentid')
