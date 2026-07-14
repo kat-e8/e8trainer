@@ -33,6 +33,11 @@ router
 
 
 router
+    .route('/companies/search/find')
+    .get(ctrlCompanies.searchForCompanies);
+
+
+router
     .route('/courses/:courseid/students/:studentid')
     .get(ctrlCourseStudents.courseStudentsReadOne)
     .put(ctrlCourseStudents.courseStudentsUpdateOne)

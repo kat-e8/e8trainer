@@ -20,7 +20,7 @@ block content
     .row
         .col-12.col-md-8
             .error= message
-            each company in companies.reverse()
+            each company in foundCompanies.matchingCompanies
                 .card
                     .card-block
                         h4

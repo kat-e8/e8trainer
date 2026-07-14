@@ -152,11 +152,48 @@ const findCompanyByName = (req, res) => {
         });
 };
 
+
+const searchForCompanies = (req, res) => {
+    Company
+        .find()
+        .then((companies) => {
+            if(!companies){
+                    return res
+                        .status(404)
+                        .json({"message": "companies not found"});
+            } else{
+                matchingCompanies  = []
+                for(i = 0; i < companies.length; i++){
+                    searchPhrase = req.body.searchPhrase;
+                    //console.log(companies[i].name);
+                    if(companies[i].name.includes(searchPhrase)){
+                        matchingCompanies.push(companies[i]);
+                    }
+                }
+                response = {
+                    matchingCompanies
+                }
+                return res
+                        .status(200)
+                        .json(response);
+            }
+        }).catch((err) => {
+            return res
+                .status(404)
+                .json({"message": "companies not found"});
+        });
+    //searchPhrase = req.body.searchPhrase;
+    //search for all students
+
+};
+
+
 module.exports = {
     companiesReadOne,
     companiesReadAll,
     companiesUpdateOne,
     companiesCreateOne,
     companiesDeleteOne,
-    findCompanyByName
+    findCompanyByName,
+    searchForCompanies
 };

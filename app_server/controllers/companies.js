@@ -462,6 +462,41 @@ const openCommentDeleteForm = (req, res) => {
     });
 };
 
+const searchRenderCompanies = (req, res, foundCompanies) => {
+    //console.log(foundStudents.matchingStudents);
+    res.render('search-company-list', {
+        pageHeader: {
+            title: 'Companies',
+            strapline: 'Element 8 Partners'
+        },
+        sidebar: {
+            context: `Inductive Automation courses offered by Element8`,
+            callToAction: 'My intention is to inject students with an excitement for Ignition, but here\'s a question: \nHow can I pour from an empty cup? \nHow could I possibly hope to inspire if I myself am not inspired?'
+        }, 
+        foundCompanies
+    });
+}
+
+
+const readSearchedCompanies = (req, res) => {
+    ///
+    const path = `companies/search/find`;
+    const formSearch = {searchPhrase: req.body.searchPhrase};
+    const requestOptions = {
+            url: `${apiOptions.server}${path}`,
+            method: 'GET',   
+            json: formSearch
+    };
+    request(requestOptions,(err, {statusCode}, foundCompanies) => {
+            if(statusCode === 200) {
+                searchRenderCompanies(req, res, foundCompanies);
+            } else {
+                showError(req, res, statusCode)   
+            }
+    });
+    
+};
+
 
 
 module.exports = {
@@ -481,5 +516,6 @@ module.exports = {
     updateComment,
     deleteComment,
     openCompanyDeleteForm,
-    openCommentDeleteForm
+    openCommentDeleteForm,
+    readSearchedCompanies
 };

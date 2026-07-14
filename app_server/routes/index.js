@@ -150,3 +150,7 @@ router
 router
     .route('/companies/:companyid/comments/:commentid')
     .get(ctrlCompanies.readCompanyComment);
+
+router
+    .route('/companies/search')
+    .post(ctrlCompanies.readSearchedCompanies);
